@@ -1,0 +1,9 @@
+development:
+  adapter: postgresql
+  database: hangman_development
+  template: template0
+
+test:
+  adapter: postgresql
+  database: hangman_test
+  template: template0
