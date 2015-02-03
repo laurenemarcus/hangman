@@ -44,7 +44,7 @@
 
 <form action="/heads/<%=@word.id %>" method="post">
   <label for="guess"></label>
-  <input id = "guess" name= "guess" type="text" maxlength="1">
+  <input id = "guess" name= "guess" type="text" maxlength="1" pattern="[A-Za-z]">
 
   <button type="submit">Submit</button>
 </form>
