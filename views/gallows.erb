@@ -14,10 +14,24 @@
             ______|_____
 </pre>
 
+<% if @guesses.any? %>
 
 <% @word.letterize.each do |letter| %>
+  <% @guesses.each do |guess_letter| %>
+    <% if guess_letter.guess == letter %>
+      <%= letter %>
+    <% else %>
+    <%= "_" %>
+  <% end %>
+  <% end %>
+<% end %>
+
+<% else %>
+  <% @word.letterize.each do |letter| %>
   <%= "_" %>
 <% end %>
+<% end %>
+
 
 <h3>Enter a letter:</h3>
 
@@ -28,5 +42,3 @@
 
   <button type="submit">Submit</button>
 </form>
-
-<%

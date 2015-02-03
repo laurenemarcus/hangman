@@ -15,9 +15,22 @@ post '/words' do
   redirect '/'
 end
 
+delete '/' do
+  @words = Word.all
+  @words.each do |word|
+    word.delete
+  end
+  @guesses = Guess.all
+  @guesses.each do |guess|
+    guess.delete
+  end
+  redirect '/'
+end
+
 get '/words/:id' do
   word_id = params.fetch('id').to_i
   @word = Word.find(word_id)
+  @guesses= Guess.all()
   erb(:gallows)
 end
 
@@ -28,14 +41,17 @@ post '/guesses' do
   @word = Word.find(word_id)
   if @word.word.include?(guess)
     @guess.update(included: true)
-    redirect("/head")
+    redirect("/words/#{@word.id}")
   else
     @guess.update(included: false)
-    redirect("/")
+    redirect("/heads/#{@word.id}")
   end
 end
 
-get("/head") do
+get("/heads/:id") do
+  @guesses= Guess.all()
+  word_id = params.fetch("id").to_i
+  @word = Word.find(word_id)
   erb(:head)
 end
 

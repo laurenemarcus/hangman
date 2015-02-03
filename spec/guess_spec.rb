@@ -16,4 +16,13 @@ describe Guess do
       expect(Guess.not_included()).to eq(not_included_letters)
     end
   end
+  describe ".is_included" do
+    it "returns letters included in the word" do
+      included_letter1 =Guess.create(guess: "a", included: true)
+      included_letter2 =Guess.create(guess: "b", included: true)
+      included_letters = [included_letter1, included_letter2]
+      not_included_letter = Guess.create(guess:"c", included: false)
+      expect(Guess.is_included()).to eq(included_letters)
+    end
+  end
 end

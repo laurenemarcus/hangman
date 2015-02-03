@@ -11,3 +11,13 @@
                     |
               ______|_____
 </pre>
+
+<% @word.letterize.each do |letter| %>
+  <% @guesses.is_included.each do |guess_letter| %>
+    <% if guess_letter.guess == letter %>
+      <%= letter %>
+    <% else %>
+      <%= "_" %>
+    <% end %>
+  <% end %>
+<% end %>
