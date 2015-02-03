@@ -25,4 +25,21 @@ describe Guess do
       expect(Guess.is_included()).to eq(included_letters)
     end
   end
+
+  it("will downcase the guess") do
+    guess = Guess.create(guess: "H")
+    expect(guess.guess()).to eq("h")
+  end
+
+  it("ensures the length of the guess is one character") do
+    guess = Guess.new(guess: "he")
+    expect(guess.save).to eq(false)
+  end
+
+  it("only allows the user to enter a letter not already guessed") do
+    guess1 = Guess.create(guess: "h")
+    guess2 = Guess.new(guess: "h")
+    expect(guess2.save).to eq(false)
+  end
+
 end

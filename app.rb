@@ -36,10 +36,11 @@ end
 
 post '/gallows/:id' do
   guess = params.fetch("guess")
-  @guess = Guess.create(guess: guess)
   word_id = params.fetch("id").to_i
+  guesses = Guess.all
+  @guess = Guess.create(guess: guess, word_id: word_id)
   @word = Word.find(word_id)
-  if @word.word.include?(guess)
+  if @word.word.include?(@guess.guess) || @guess.save.eql?(false)
     @guess.update(included: true)
     redirect("/gallows/#{@word.id}")
   else
@@ -59,10 +60,10 @@ end
 
 post("/heads/:id") do
   guess = params.fetch("guess")
-  @guess = Guess.create(guess: guess)
   word_id = params.fetch("id").to_i
+  @guess = Guess.create(guess: guess, word_id: word_id)
   @word = Word.find(word_id)
-  if @word.word.include?(guess)
+  if @word.word.include?(@guess.guess) || @guess.save.eql?(false)
     @guess.update(included: true)
     redirect("/heads/#{@word.id}")
   else
@@ -82,10 +83,10 @@ end
 
 post("/body/:id") do
   guess = params.fetch("guess")
-  @guess = Guess.create(guess: guess)
   word_id = params.fetch("id").to_i
+  @guess = Guess.create(guess: guess, word_id: word_id)
   @word = Word.find(word_id)
-  if @word.word.include?(guess)
+  if @word.word.include?(@guess.guess) || @guess.save.eql?(false)
     @guess.update(included: true)
     redirect("/body/#{@word.id}")
   else
@@ -104,10 +105,10 @@ end
 
 post("/arms/:id") do
   guess = params.fetch("guess")
-  @guess = Guess.create(guess: guess)
   word_id = params.fetch("id").to_i
+  @guess = Guess.create(guess: guess, word_id: word_id)
   @word = Word.find(word_id)
-  if @word.word.include?(guess)
+  if @word.word.include?(@guess.guess) || @guess.save.eql?(false)
     @guess.update(included: true)
     redirect("/arms/#{@word.id}")
   else
@@ -124,4 +125,9 @@ get("/legs/:id") do
     guess.delete
   end
   erb(:legs)
+end
+
+get("win/:id") do
+  word_id = params.fetch("id").to_i
+  @word = Word.find(word_id)
 end
