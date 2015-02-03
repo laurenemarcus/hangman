@@ -1,23 +1,52 @@
+<h1>Hangman</h1>
+<br>
 <pre>
-    ________________
-   /xx\             |
-   \~~/             |
-                    |
-                    |
-                    |
-                    |
-                    |
-                    |
-                    |
-              ______|_____
+  ________________
+  /xx\            |
+  \~~/            |
+                  |
+                  |
+                  |
+                  |
+                  |
+                  |
+                  |
+            ______|_____
 </pre>
 
-<% @word.letterize.each do |letter| %>
-  <% @guesses.is_included.each do |guess_letter| %>
-    <% if guess_letter.guess == letter %>
-      <%= letter %>
-    <% else %>
-      <%= "_" %>
+
+<% if @guesses.any? %>
+ <% @word.letterize.each do |letter| %>
+    <% success = false %>
+    <% @guesses.each do |guess_letter| %>
+      <% if guess_letter.guess == letter %>
+        <%= letter %>
+        <% success = true %>
+      <% end %>
     <% end %>
+      <% if success == false %>
+        <%= "_" %>
+      <% end %>
   <% end %>
+
+<% else %>
+<% @word.letterize.each do |letter| %>
+<%= "_" %>
 <% end %>
+<% end %>
+<br>
+<% @not_included.each do |not_included| %>
+<%= not_included.guess() %>
+<% end %>
+
+
+<h3>Enter a letter:</h3>
+
+<form action="/heads/<%=@word.id %>" method="post">
+  <label for="guess"></label>
+  <input id = "guess" name= "guess" type="text">
+
+  <button type="submit">Submit</button>
+</form>
+
+<a href ="/">Return to main page </a>
