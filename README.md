@@ -11,13 +11,15 @@ postgreSQL 9.4.0
 INSTALLATION
 ------------
 Run the following command to start the postgreSQL server:
-```postgres```
+```
+postgres
+```
 
 Run the following command to access psql:
 ```psql```
 
 Run the following command to create the databases:
-```rake db:create```
+```sh rake db:create```
 
 Run the following command to populate the databases:
 ```rake db:migrate```
