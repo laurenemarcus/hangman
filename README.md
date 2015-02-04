@@ -5,6 +5,7 @@ The hangman app is a two player game. The first play enters and selects a word. 
 REQUIREMENTS
 ------------
 Ruby v 2.2.0
+
 postgreSQL 9.4.0
 
 
@@ -12,35 +13,53 @@ INSTALLATION
 ------------
 Run the following command to start the postgreSQL server:
 ```
-postgres
+$ postgres
 ```
 
 Run the following command to access psql:
-```psql```
+```
+$ psql
+```
 
 Run the following command to create the databases:
-```sh rake db:create```
+```
+$ rake db:create
+```
 
 Run the following command to populate the databases:
-```rake db:migrate```
+```
+$ rake db:migrate
+```
 
 Run the following command to copy migrations to the test database:
-```rake db:test:prepare```
+```
+$ rake db:test:prepare
+```
 
 Run the following command to install rspec:
-```gem install rspec```
+```
+$ gem install rspec
+```
 
 Run the following command to use rspec:
-```rspec```
+```
+$ rspec
+```
 
 Run the following command to install bundler:
-```gem install bundler```
+```
+$ gem install bundler
+```
 
 Run the following command to install all required gems:
-```bundle```
+```
+$ bundle
+```
 
 Run the following command to start the Sinatra server:
-```ruby app.rb```
+```
+$ ruby app.rb
+```
 
 
 KNOWN BUGS
